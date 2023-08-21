@@ -1,0 +1,20 @@
+{% comment %}
+  Renders a progress bar component.
+
+  Accepts:
+    - value: {number} Current value (required)
+    - max: {number} Maximum value (required)
+    - class: {string} Extra classes (optional)
+
+  Usage:
+    {% render 'progress-bar', value: 1, max: 5 %}
+{% endcomment %}
+
+{% if value and max %}
+  {% liquid
+    assign class = 'h-2 w-full [&::-webkit-progress-bar]:bg-gray-300 [&::-webkit-progress-value]:bg-black [&::-moz-progress-bar]:bg-black [&::-webkit-progress-value]:transition-all ' | append: class
+    assign max = max | times: 1.0
+    assign value = value | divided_by: max | times: 100 | round
+  %}
+  <progress class="{{ class }}" value="{{ value }}" max="100"></progress>
+{% endif %}

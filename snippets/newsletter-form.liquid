@@ -1,0 +1,36 @@
+{% comment %}
+  Renders a newsletter signup form.
+
+  Accepts:
+    - button_label: {string} Text for the submit button (required)
+
+  Usage:
+    {% render 'newsletter-form', button_label: 'Sign Up', id: section.id %}
+{% endcomment %}
+
+{% form 'customer', class: 'flex w-full max-w-xl flex-col gap-2' %}
+  {% unless form.posted_successfully? %}
+    <input type="hidden" name="contact[tags]" value="quiz">
+    <label class="sr-only" for="form-{{ form.id }}">Email</label>
+    <input
+      class="flex h-10 px-4 py-2 rounded-sm w-full border border-px text-sm placeholder:text-gray-500 bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+      type="email"
+      id="form-{{ form.id }}"
+      name="contact[email]"
+      aria-required="true"
+      autocorrect="off"
+      autocapitalize="off"
+      value="{{ form.email }}"
+      {% if form.errors %}
+        autofocus
+        aria-invalid="true"
+      {% endif %}
+      placeholder="Your email"
+      required>
+    <button
+      class="inline-flex items-center justify-center px-6 h-11 font-medium rounded-sm text-white bg-black transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
+      name="commit">
+      {{ button_label }}
+    </button>
+  {% endunless %}
+{% endform %}

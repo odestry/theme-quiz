@@ -1,21 +1,34 @@
-# theme-name
+# Theme Quiz
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&colorA=338fbb&colorB=1c1c1c&logoColor=ffffff)](https://github.com/odestry/contribute)
 [![Discord Shield](https://img.shields.io/discord/983602196493004820?style=flat&colorA=338fbb&colorB=1c1c1c&label=discord&logo=discord&logoColor=ffffff)](https://discord.gg/blanklob-community-983602196493004820)
 
+[Features](#features) |
 [Usage](#usage) |
 [Tools](#tools) |
 [Contributing](#contributing) |
 [License](#license)
 
-An opinionated lightweight theme starter for all projects.
+An easy way to create Shopify quizzes using Section Rendering API and native product recommendations.
+
+## Features
+
+This quiz was build to use Shopify native APIs and features and support campatibility with other apps and integrations.
+
+- Works with Shopify Search & Descovery app to provide native product recommendations.
+- Server side rendering for SEO.
+- Extremly fast and lightweight. Only 100+ lines of code.
+- Can easly be extended to support more question types.
+- Works with metaobjects to provide a simple way to add new questions.
+- Support new apps and integrations using app extensions.
+- Support for multiple languages and Shopify markets.
 
 ## Usage
 
 To get started clone the template by clicking the **Use this template** button or by running the following command:
 
 ```bash
-git clone https://github.com/odestry/theme-starter.git
+git clone https://github.com/odestry/theme-quiz.git
 ```
 
 ### Running the development server
@@ -45,6 +58,10 @@ npm run dev
 
 After authenticating, this will start a local development server running at `https://localhost:9292` that you can use to preview your changes.
 
+### Setup
+
+To setup the quiz you'll need to create a new page and add the following code to it:
+
 ## Tools
 
 There are a number of really useful tools that the Shopify Themes team uses during development. This theme is already set up to work with these tools.
@@ -54,6 +71,10 @@ There are a number of really useful tools that the Shopify Themes team uses duri
 [Shopify CLI](https://github.com/Shopify/shopify-cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
 
 You can follow this [quick start guide for theme developers](https://github.com/Shopify/shopify-cli#quick-start-guide-for-theme-developers) to get started.
+
+### Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com) is a utility-first CSS framework for rapidly building custom storefront interfaces. It's a great way to build Shopify themes and sections quickly. You can find the configuration file at `tailwind.config.ts`. We use Vite to compile Tailwind CSS.
 
 ### Theme Check
 

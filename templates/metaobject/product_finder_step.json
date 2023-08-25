@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-finder",
+      "blocks": {
+        "choice": {
+          "type": "choice",
+          "repeater": "{{ metaobject.choices.value }}",
+          "settings": {
+            "image": "{{ block.repeater.image.value }}",
+            "handle": "{{ block.repeater.answer.value }}",
+            "text": "{{ block.repeater.text.value }}",
+            "button_label": "{{ block.repeater.heading.value }}",
+            "button_link": "{{ block.repeater.product_finder_next_step.value.system.url }}"
+          }
+        }
+      },
+      "block_order": [
+        "choice"
+      ],
+      "settings": {
+        "image": "{{ metaobject.image.value }}",
+        "heading": "{{ metaobject.heading.value }}",
+        "text": "{{ metaobject.text.value }}",
+        "back_button_label": "Go back",
+        "back_button_link": "{{ metaobject.previous_product_finder_step.value.system.url }}",
+        "previous_page": "{{ metaobject.previous_page.value }}",
+        "spacing": 48
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

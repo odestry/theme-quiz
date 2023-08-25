@@ -1,0 +1,178 @@
+<section
+  class="grid items-center py-[calc(var(--spacing)*0.75)] lg:py-[--spacing]"
+  style="--spacing: {{ section.settings.spacing }}px">
+  <div class="container mx-auto px-4 flex flex-col items-start gap-4 md:gap-5">
+    {% render 'image', class: 'h-[50vh] lg:h-[30rem]', image: section.settings.image %}
+    <h1 class="max-w-xl scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl">
+      {{ section.settings.heading }}
+    </h1>
+    <p class="max-w-prose text-xl text-gray-500">
+      {{ section.settings.text }}
+    </p>
+    <ul class="flex flex-col gap-2 list-none w-full max-w-sm" role="list">
+      {% for block in section.blocks %}
+        {% liquid
+          capture index
+            cycle '1', '2', '3'
+          endcapture
+          assign placeholder = 'hero-apparel-' | append: index
+        %}
+        {% case block.type %}
+          {% when 'choice' %}
+            <li {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                <a
+                  {% if section.settings.button_link != blank %}
+                    href="{{ section.settings.button_link }}"
+                  {% else %}
+                    href="{{ routes.root_url }}"
+                  {% endif %}
+                  {% if block.settings.value %}
+                    data-choice-value="{{ block.settings.value | escape }}"
+                  {% endif %}
+                  class="relative no-underline w-full">
+                  {% render 'image',
+                    class: 'w-[5rem] h-[5rem] aspect-square',
+                    placeholder: placeholder,
+                    image: block.settings.image
+                  %}
+                </a>
+              {% else %}
+                <a
+                  {% if block.settings.button_link != blank %}
+                    href="{{ block.settings.button_link }}"
+                  {% else %}
+                    href="{{ routes.root_url }}"
+                  {% endif %}
+                  {% if block.settings.value %}
+                    data-choice-value="{{ block.settings.value | escape }}"
+                  {% endif %}
+                  class="inline-flex items-center justify-center px-6 h-11 font-medium rounded-sm text-white bg-black w-full">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            </li>
+        {% endcase %}
+      {% endfor %}
+      {% if section.settings.back_button_label != blank %}
+        <li>
+          <a
+            {% if section.settings.previous_page != blank %}
+              href="{{ section.settings.previous_page.url }}"
+            {% elsif section.settings.back_button_link != blank %}
+              href="{{ section.settings.back_button_link }}"
+            {% else %}
+              href="{{ routes.root_url }}"
+            {% endif %}
+            class="inline-flex items-center justify-center px-4 h-10 font-medium text-black underline-offset-4 hover:underline w-full">
+            {{ section.settings.back_button_label }}
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Finder",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What is your favorite color?"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "We will use this information to match you with the perfect selection."
+    },
+    {
+      "type": "header",
+      "content": "Back Button"
+    },
+    {
+      "type": "text",
+      "id": "back_button_label",
+      "label": "Back Button Label",
+      "default": "Go back to the homepage"
+    },
+    {
+      "type": "url",
+      "id": "back_button_link",
+      "label": "Back Button Link"
+    },
+    {
+      "type": "page",
+      "id": "previous_page",
+      "label": "Previous Page",
+      "info": "Use page to automatically set the back button link to the previous page."
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Spacing",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "choice",
+      "name": "Choice",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Value",
+          "default": "answer"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Choose Answer"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Finder",
+      "blocks": [
+        {
+          "type": "choice"
+        },
+        {
+          "type": "choice"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

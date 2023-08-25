@@ -1,12 +1,15 @@
 {
   "sections": {
     "main": {
-      "type": "main-404",
+      "type": "main-section",
       "settings": {
+        "image": "shopify://shop_images/mlouye-wave-wallet-earth-6.jpg",
+        "heading": "Welcome to our matching assistant",
+        "text": "Start your journey to an elegant you today.",
+        "button_label": "Get Started",
+        "button_link": "shopify://metaobjects/product_finder_step/choose-your-dressing-style"
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

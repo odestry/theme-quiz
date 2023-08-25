@@ -1,8 +1,12 @@
 {
   "sections": {
     "main": {
-      "type": "main-quiz",
+      "type": "main-section",
       "settings": {
+        "heading": "Welcome to theme starter template by Odestry",
+        "text": "Start building your theme by editing this section file.",
+        "button_label": "Get Started",
+        "button_link": ""
       }
     }
   },

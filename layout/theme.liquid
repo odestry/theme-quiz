@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="canonical" href="{{ canonical_url }}">
 
+    <meta name="view-transition" content="same-origin">
+
     <title>{{ page_title }}</title>
 
     {% if page_description %}
@@ -13,15 +15,25 @@
     {% endif %}
 
     {% render 'product-finder-head' %}
+
     {% render 'typography' %}
 
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    {{ 'styles.css' | asset_url | stylesheet_tag }}
 
     {{ content_for_header }}
 
-    {{ 'styles.css' | asset_url | stylesheet_tag: preload: true }}
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
   </head>
-  <body class="min-h-screen">
+  <body class="grid min-h-screen">
+    <header class="sticky top-0 container mx-auto px-4 flex justify-between items-center py-2 lg:py-4">
+      <a href="{{ routes.root_url }}" class="font-medium text-lg lg:text-xl no-underline">
+        {{ shop.name }}
+      </a>
+      <a href="https://github.com/odestry/theme-quiz" class="text-gray-500 no-underline" target="_blank">
+        View on Github
+      </a>
+    </header>
+
     <main
       id="MainContent"
       class="flex flex-col outline-none"

@@ -3,7 +3,14 @@
   style="--spacing: {{ section.settings.spacing }}px">
   {% liquid
     assign progress = 1
-    assign total = shop.metaobjects.quiz_step | json
+    assign total = 1
+
+    for metaobject in shop.metaobjects[template.name].values reversed
+      if request.path contains metaobject.system.handle
+        assign progress = forloop.index
+      endif
+      assign total = total | plus: 1
+    endfor
 
     render 'progress-bar', class: 'absolute top-0', value: progress, max: 5
   %}

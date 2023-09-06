@@ -650,17 +650,17 @@ video {
 .aspect-\[5\/3\] {
   aspect-ratio: 5/3;
 }
-.aspect-auto {
-  aspect-ratio: auto;
+.aspect-\[5\/4\] {
+  aspect-ratio: 5/4;
 }
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
-.aspect-\[3\/4\] {
-  aspect-ratio: 3/4;
+.h-1 {
+  height: 0.25rem;
 }
-.aspect-\[5\/4\] {
-  aspect-ratio: 5/4;
+.h-1\.5 {
+  height: 0.375rem;
 }
 .h-10 {
   height: 2.5rem;
@@ -670,9 +670,6 @@ video {
 }
 .h-12 {
   height: 3rem;
-}
-.h-2 {
-  height: 0.5rem;
 }
 .h-8 {
   height: 2rem;
@@ -689,16 +686,6 @@ video {
 .h-auto {
   height: auto;
 }
-.h-fit {
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.h-1 {
-  height: 0.25rem;
-}
-.h-1\.5 {
-  height: 0.375rem;
-}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -714,17 +701,11 @@ video {
 .max-w-3xl {
   max-width: 48rem;
 }
-.max-w-lg {
-  max-width: 32rem;
-}
 .max-w-prose {
   max-width: 65ch;
 }
 .max-w-xl {
   max-width: 36rem;
-}
-.max-w-sm {
-  max-width: 24rem;
 }
 .scroll-m-20 {
   scroll-margin: 5rem;
@@ -887,57 +868,45 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-
 .placeholder\:text-gray-500::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
-
 .placeholder\:text-gray-500::placeholder {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
-
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
-
 .focus-visible\:outline-none:focus-visible {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-
 .focus-visible\:ring-2:focus-visible {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
-
 .focus-visible\:ring-gray-500:focus-visible {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
 }
-
 .focus-visible\:ring-offset-2:focus-visible {
   --tw-ring-offset-width: 2px;
 }
-
 .disabled\:pointer-events-none:disabled {
   pointer-events: none;
 }
-
 .disabled\:cursor-not-allowed:disabled {
   cursor: not-allowed;
 }
-
 .disabled\:opacity-50:disabled {
   opacity: 0.5;
 }
-
 .disabled\:opacity-60:disabled {
   opacity: 0.6;
 }
-
 @media (min-width: 640px) {
 
   .sm\:block {
@@ -948,7 +917,6 @@ video {
     display: none;
   }
 }
-
 @media (min-width: 768px) {
 
   .md\:block {
@@ -1000,7 +968,6 @@ video {
     padding-bottom: 4rem;
   }
 }
-
 @media (min-width: 1024px) {
 
   .lg\:block {
@@ -1023,14 +990,6 @@ video {
     height: 35rem;
   }
 
-  .lg\:h-\[40rem\] {
-    height: 40rem;
-  }
-
-  .lg\:h-\[45rem\] {
-    height: 45rem;
-  }
-
   .lg\:h-\[42rem\] {
     height: 42rem;
   }
@@ -1040,11 +999,6 @@ video {
     padding-bottom: 5rem;
   }
 
-  .lg\:py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
   .lg\:py-\[--spacing\] {
     padding-top: var(--spacing);
     padding-bottom: var(--spacing);
@@ -1052,10 +1006,6 @@ video {
 
   .lg\:pb-4 {
     padding-bottom: 1rem;
-  }
-
-  .lg\:pt-6 {
-    padding-top: 1.5rem;
   }
 
   .lg\:pt-8 {
@@ -1072,7 +1022,6 @@ video {
     line-height: 1.75rem;
   }
 }
-
 @media (min-width: 1280px) {
 
   .xl\:block {
@@ -1083,7 +1032,6 @@ video {
     display: none;
   }
 }
-
 @media (min-width: 1536px) {
 
   .\32xl\:block {
@@ -1094,22 +1042,18 @@ video {
     display: none;
   }
 }
-
 .\[\&\:\:-moz-progress-bar\]\:bg-black::-moz-progress-bar {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
-
 .\[\&\:\:-webkit-progress-bar\]\:bg-gray-300::-webkit-progress-bar {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
-
 .\[\&\:\:-webkit-progress-value\]\:bg-black::-webkit-progress-value {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
-
 .\[\&\:\:-webkit-progress-value\]\:transition-all::-webkit-progress-value {
   -webkit-transition-property: all;
   transition-property: all;

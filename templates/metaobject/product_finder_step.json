@@ -15,21 +15,16 @@
           }
         }
       },
-      "block_order": [
-        "choice"
-      ],
+      "block_order": ["choice"],
       "settings": {
         "image": "{{ metaobject.image.value }}",
         "heading": "{{ metaobject.heading.value }}",
         "text": "{{ metaobject.text.value }}",
         "back_button_label": "Go back",
         "back_button_link": "{{ metaobject.previous_product_finder_step.value.system.url }}",
-        "previous_page": "{{ metaobject.previous_page.value }}",
-        "spacing": 48
+        "previous_page": "{{ metaobject.previous_page.value }}"
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

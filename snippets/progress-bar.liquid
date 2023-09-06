@@ -12,7 +12,7 @@
 
 {% if value and max %}
   {% liquid
-    assign class = 'h-2 w-full [&::-webkit-progress-bar]:bg-gray-300 [&::-webkit-progress-value]:bg-black [&::-moz-progress-bar]:bg-black [&::-webkit-progress-value]:transition-all ' | append: class
+    assign class = 'h-1.5 md:h-2 w-full [&::-webkit-progress-bar]:bg-gray-300 [&::-webkit-progress-value]:bg-black [&::-moz-progress-bar]:bg-black [&::-webkit-progress-value]:transition-all ' | append: class
     assign max = max | times: 1.0
     assign value = value | divided_by: max | times: 100 | round
   %}

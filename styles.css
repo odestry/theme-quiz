@@ -17,7 +17,7 @@
     @apply hidden;
   }
 
-  section {
+  /* section {
     view-transition-name: section;
   }
 
@@ -53,5 +53,5 @@
     to {
       transform: translateX(0);
     }
-  }
+  } */
 }

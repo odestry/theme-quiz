@@ -5,12 +5,9 @@
       "settings": {
         "heading": "Welcome to theme starter template by Odestry",
         "text": "Start building your theme by editing this section file.",
-        "button_label": "Get Started",
-        "button_link": ""
+        "button_label": "Get Started"
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

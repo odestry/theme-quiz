@@ -1,0 +1,232 @@
+{% comment %}
+  This section is used by the section Rendering API.
+{% endcomment %}
+
+<section class="grid items-center py-12 md:py-16 lg:py-20">
+  <div class="container mx-auto px-4">
+    {% for block in section.blocks %}
+      {% liquid
+        capture index
+          cycle '1', '2', '3'
+        endcapture
+        assign placeholder = 'hero-apparel-' | append: index
+      %}
+      {% case block.type %}
+        {% when 'welcome' %}
+          <div
+            data-name="{{ block.type }}"
+            class="flex flex-col items-start gap-4 md:gap-5"
+            {{ block.shopify_attributes }}>
+            {% render 'image', class: 'h-[50vh] lg:h-[30rem]', image: block.settings.image %}
+            <h1 class="max-w-xl scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl">
+              {{ block.settings.heading }}
+            </h1>
+            <p class="max-w-prose text-xl text-gray-500">
+              {{ block.settings.text }}
+            </p>
+            {% if block.settings.button_label %}
+              <button
+                type="button"
+                class="inline-flex items-center justify-center px-6 h-11 font-medium rounded-sm text-white bg-black transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
+                data-value="{{ block.settings.button_label | handle }}">
+                {{ block.settings.button_label }}
+              </button>
+            {% endif %}
+          </div>
+
+        {% when 'results' %}
+          <div
+            data-name="{{ block.type }}"
+            class="flex flex-col gap-4 md:gap-8 max-w-3xl"
+            {{ block.shopify_attributes }}>
+            {% render 'image', class: 'h-[40vh] lg:h-[20rem] aspect-[5/3]', image: block.settings.image %}
+            <h2 class="max-w-xl scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl">
+              {{ block.settings.heading }}
+            </h2>
+            <p class="max-w-prose text-lg text-gray-500">
+              {{ block.settings.text }}
+            </p>
+
+            {% render 'newsletter-form', button_label: 'Save your results', id: block.id %}
+
+            <div class="results">
+              {% if recommendations.performed and recommendations.products_count > 0 %}
+                <ul
+                  class="grid grid-cols-2 gap-4 md:grid-cols-3 list-none"
+                  role="list">
+                  {% for recommendation in recommendations.products %}
+                    <li>
+                      {% render 'product-card', card_product: recommendation %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+
+            {% if block.settings.back_button_label != blank %}
+              <a
+                href="{{ routes.root_url }}"
+                class="inline-flex items-center justify-center px-4 h-11 font-medium rounded-sm text-white bg-black mt-4">
+                {{ block.settings.back_button_label }}
+              </a>
+            {% endif %}
+          </div>
+
+        {% when 'step' %}
+          <div
+            data-name="{{ block.type | append: '-' | append: forloop.index }}"
+            class="flex flex-col md:flex-row items-center gap-4 md:gap-8"
+            {{ block.shopify_attributes }}>
+            {% render 'image',
+              class: 'h-[40vh] lg:h-[35rem] aspect-[4/3]',
+              placeholder: placeholder,
+              image: block.settings.image
+            %}
+            <div class="flex flex-col gap-4">
+              <h2 class="max-w-xl scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl">
+                {{ block.settings.heading }}
+              </h2>
+              <p class="max-w-prose text-lg mb-4 text-gray-500">
+                {{ block.settings.text }}
+              </p>
+              <div class="flex flex-col gap-2">
+                {% if block.settings.button_label %}
+                  <button
+                    type="button"
+                    class="inline-flex items-center justify-center px-6 h-11 font-medium rounded-sm text-white bg-black transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
+                    data-value="{{ block.settings.button_label | handle }}">
+                    {{ block.settings.button_label }}
+                  </button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Finder",
+  "settings": [
+    {
+      "type": "product",
+      "id": "default_product",
+      "label": "Default product",
+      "info": "This product will be used as a default when no recommendations are available."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "welcome",
+      "name": "Welcome",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Welcome to our matching assistant"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Start your journey to an elegant you today."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Get Started"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "What is your favorite color?"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "We will use this information to match you with the perfect selection."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Choose Color"
+        }
+      ]
+    },
+    {
+      "type": "results",
+      "name": "Results",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Here are our hand picked results for you"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "We will use this information to match you with the perfect selection."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_newsletter_form",
+          "label": "Show newsletter form",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Show me the results"
+        },
+        {
+          "type": "text",
+          "id": "back_button_label",
+          "label": "Back Button Label",
+          "default": "Go back to the homepage"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Finder"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
+}
+{% endschema %}

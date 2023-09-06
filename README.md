@@ -1,27 +1,15 @@
 # Theme Quiz
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&colorA=338fbb&colorB=1c1c1c&logoColor=ffffff)](https://github.com/odestry/contribute)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&colorA=338fbb&colorB=1c1c1c&logoColor=ffffff)](https://github.com/odestry/.github/blob/main/CONTRIBUTING.md)
+[![CI](https://img.shields.io/github/actions/workflow/status/odestry/theme-quiz/ci.yml?style=flat&label=CI&colorA=338fbb&colorB=1c1c1c&logoColor=ffffff)](https://github.com/odestry/theme-quiz/blob/main/.github/workflows/ci.yml)
 [![Discord Shield](https://img.shields.io/discord/983602196493004820?style=flat&colorA=338fbb&colorB=1c1c1c&label=discord&logo=discord&logoColor=ffffff)](https://discord.gg/blanklob-community-983602196493004820)
 
-[Features](#features) |
 [Usage](#usage) |
 [Tools](#tools) |
 [Contributing](#contributing) |
 [License](#license)
 
-An easy way to create Shopify quizzes using Section Rendering API and native product recommendations.
-
-## Features
-
-This quiz was build to use Shopify native APIs and features and support campatibility with other apps and integrations.
-
-- Works with Shopify Search & Descovery app to provide native product recommendations.
-- Server side rendering for SEO.
-- Extremly fast and lightweight. Only 100+ lines of code.
-- Can easly be extended to support more question types.
-- Works with metaobjects to provide a simple way to add new questions.
-- Support new apps and integrations using app extensions.
-- Support for multiple languages and Shopify markets.
+An opinionated lightweight theme starter for all projects.
 
 ## Usage
 
@@ -58,10 +46,6 @@ npm run dev
 
 After authenticating, this will start a local development server running at `https://localhost:9292` that you can use to preview your changes.
 
-### Setup
-
-To setup the quiz you'll need to create a new page and add the following code to it:
-
 ## Tools
 
 There are a number of really useful tools that the Shopify Themes team uses during development. This theme is already set up to work with these tools.
@@ -90,7 +74,7 @@ shopify theme check
 
 ### Continuous Integration
 
-This theme uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/odestry/theme-starter/blob/main/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
+This theme uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/odestry/theme-quiz/blob/main/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
 
 #### Shopify/lighthouse-ci-action
 
@@ -102,7 +86,7 @@ This theme runs [Theme Check](https://github.com/Shopify/theme-check-action) on 
 
 ## Contributing
 
-We'd love your help! Please read our [contributing guide](https://github.com/odestry/contribute) to learn about our development process, how to propose bug fixes and improvements.
+We'd love your help! Please read our [contributing guide](https://github.com/odestry/.github/blob/main/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements.
 
 ## License
 

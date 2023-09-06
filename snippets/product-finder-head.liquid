@@ -1,0 +1,13 @@
+{% comment %}
+  Renders tags for the product finder page type.
+
+  Usage:
+    {% render 'product-finder-head' %}
+{% endcomment %}
+
+{% if request.page_type == 'metaobject' and template.name == 'product_finder_step' %}
+  <meta name="robots" content="noindex,nofollow">
+  <script>
+    console.log('Metaobject page type detected.');
+  </script>
+{% endif %}

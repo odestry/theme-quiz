@@ -13,5 +13,8 @@
       "copy_code_success": "Code copied successfully",
       "print_gift_card": "Print"
     }
+  },
+  "quiz":{
+    "go_back":"Go Back"
   }
 }

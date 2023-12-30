@@ -1,27 +1,35 @@
 {% comment %} 
    - metaobject:
-      image: Image file for step
-      heading: headng of step
-      body: Body text of step
-      choices: [choice metaobject]
-
-   - choice:
-    text: text on top of image => not used, possible idea
-    image: image of choice => not used, possible idea
-    button_label: label visible to clients on button
-    answer: answer keyword for choice
+      steps: [product_finder_step metaobject]
+      image: Image file for final result page
+      header: Header text for final result page
+      body: Body text for final result page
 {% endcomment %}
-{% liquid
-  assign progress = 1
-  assign stepData = metaobject
-  assign current_step = progress
-  assign placeholder = 'hero-apparel-' | append: current_step
-  assign name = 'quiz-step-' | append: current_step
-  assign image = stepData.image
-%}
 <section class="grid items-center py-[calc(var(--spacing)*0.75)] lg:py-[--spacing]" style="--spacing: {{ section.settings.spacing }}px">
+  {% liquid
+    assign progress = 1
+    assign total = 0
+    assign stepData = nil
+    for metaobject in metaobject.steps.value
+      if forloop.index == 1
+        assign stepData = metaobject
+      endif
+      assign total = total | plus: 1
+    endfor
+    assign progressTotal = total 
+    if metaobject.collect_email
+      assign progressTotal = total | plus: 1
+    endif
+    render 'progress-bar', class: 'absolute top-0', value: progress, max: progressTotal
+
+
+    assign current_step = progress
+    assign placeholder = 'hero-apparel-' | append: current_step
+    assign name = 'quiz-step-' | append: current_step
+    assign image = stepData.image
+  %}
   <section class="{{ name }} grid items-center py-12 md:py-16 lg:py-20">
-    <quiz-router>
+    <quiz-router data-totalsteps="{{ total }}">
       <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-4 md:gap-8">
         {% render 'image'
           , class: 'h-[40vh] lg:h-[35rem] aspect-[4/3]'
@@ -40,7 +48,7 @@
                 <button
                   type="button"
                   class="inline-flex items-center justify-center px-6 h-11 font-medium rounded-sm text-white bg-black transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
-                  data-value="{{ choice.answer }}"
+                  data-value="{{ choice.answer | handleize }}"
                   data-next="{{ choice.product_finder_next_step.value.system.url }}">
                   {{ choice.button_label }}
                 </button>
@@ -49,7 +57,7 @@
             {% if stepData.previous_product_finder_step != nil %}
               <button
                 type="button"
-                data-previous="{{ stepData.previous_product_finder_step.value.system.url }}"
+                data-previous="{{ stepData.previous_product_finder_step }}"
                 class="inline-flex items-center justify-center px-4 h-10 font-medium text-black underline-offset-4 hover:underline w-full">
                 {{ 'quiz.go_back' | t }}
               </button>
@@ -68,11 +76,11 @@
 
 {% schema %}
   {
-    "name": "Quiz step",
+    "name": "Main quiz",
     "settings": [],
     "presets": [
       {
-        "name": "Quiz step",
+        "name": "Main quiz",
         "blocks": []
       }
     ]

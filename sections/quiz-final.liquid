@@ -1,0 +1,25 @@
+<quiz-router>
+  <div class="container mx-auto max-w-3xl px-4 flex flex-col gap-4 md:gap-8">
+    {% if metaobject.collect_email %}
+      <div id="quiz-contact" class="justify-center flex items-center flex-col gap-4 md:gap-8">
+        <p class="text-center">Almost there, please fill your email to proceed</p>
+        {% render 'newsletter-form'
+          , button_label: 'Save your results'
+          , id: "quiz-form" %}
+      </div>
+    {% endif %}
+    <div class="quiz-final-content flex flex-col gap-4 md:gap-8 {% if metaobject.collect_email %} hidden {% endif %}">
+      {% render 'image'
+        , class: 'h-[40vh] lg:h-[20rem] aspect-[5/3]'
+        , image: metaobject.image %}
+      <h2 class="max-w-xl scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl">
+        {{ metaobject.heading }}
+      </h2>
+      <p class="max-w-prose text-lg text-gray-500">
+        {{ metaobject.body }}
+      </p>
+      <div class="results "></div>
+    </div>
+
+  </div>
+</quiz-router>

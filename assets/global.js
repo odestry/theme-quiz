@@ -24,8 +24,10 @@ customElements.define(
       e.preventDefault();
       this.setChoice(e.currentTarget);
       document.querySelector('progress').value = 100;
-      this.querySelector('.final-step-container').classList.add('hidden');
-      this.querySelector('.results-wrapper').classList.remove('hidden');
+      this.querySelector('.final-step-container').classList.add('opacity-0');
+      this.querySelector('.results-wrapper').classList.remove('opacity-0');
+      this.querySelector('.results-wrapper').classList.remove('-z-10');
+      this.querySelector('.results-wrapper').classList.add('z-10');
 
       if (this.quizContactContainer) {
         this.quizContactContainer.classList.remove('hidden');
@@ -50,7 +52,7 @@ customElements.define(
       if (viewTransitionApiNotSupported || lastStepAndGoingBackButton) return;
 
       e.preventDefault();
-
+      
       var disablePushingToHistory = false;
       var goinToTransitionToFirstStep = this.step - 1 <= 1;
       if (!goingForward && goinToTransitionToFirstStep) {
@@ -70,7 +72,7 @@ customElements.define(
           .then((data) => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, 'text/html');
-            document.querySelector('body').replaceWith(doc.querySelector('body'));
+            document.querySelector('.quiz-wrapper').replaceWith(doc.querySelector('.quiz-wrapper'));
             if (!disablePushingToHistory) history.pushState({ currentStep: this.step }, `Step ${this.step + 1}`, href);
           });
       });

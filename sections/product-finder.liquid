@@ -1,34 +1,56 @@
 {% comment %} 
-     - metaobjects used:
-      quiz
-      product_finder_step
-      choice
-  
-      Schema for quiz metaobject:
-  
-        steps: [product_finder_step metaobject]
-        collect_email: Boolean
-        email_text: single line text
-        image: Image file for final result page
-        heading: single line text
-        body: single line text
-        empty_results: collection
-  
-      
-      Schema for product_finder_step metaobject:
-        image: image of the step
-        heading: sigle line text
-        previous_product_finder_step: previous step, if first step leave empty 
-        choices: [choice metaobject]
-        parent_quizz: parent quiz of current step
-  
-      Schema for choice metaobject::
-        text: single line text
-        image: image
-        button_label: single line text
-        answer: single line text
+       - metaobjects used:
+        quiz
+        product_finder_step
+        choice
+    
+        Schema for quiz metaobject:
+    
+          steps: [product_finder_step metaobject]
+          collect_email: Boolean
+          email_text: single line text
+          image: Image file for final result page
+          heading: single line text
+          body: single line text
+          empty_results: collection
+    
+        
+        Schema for product_finder_step metaobject:
+          image: image of the step
+          heading: sigle line text
+          previous_product_finder_step: previous step, if first step leave empty 
+          choices: [choice metaobject]
+          parent_quizz: parent quiz of current step
+    
+        Schema for choice metaobject::
+          text: single line text
+          image: image
+          button_label: single line text
+          answer: single line text
 {% endcomment %}
-<section class="grid items-center py-[calc(var(--spacing)*0.75)] lg:py-[--spacing]" style="--spacing: {{ section.settings.spacing }}px">
+<style>
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 1s;
+  }
+</style>
+<noscript>
+  <style>
+    .final-step-container {
+      display: none !important;
+    }
+    progress {
+      display: none !important
+    }
+    .results-wrapper {
+      opacity: 1 !important;
+    }
+    .results-container {
+      display: block !important
+    }
+  </style>
+</noscript>
+<section class="quiz-wrapper grid items-center py-[calc(var(--spacing)*0.75)] lg:py-[--spacing]" style="--spacing: {{ section.settings.spacing }}px">
   {% liquid
     assign progress = 1
     assign total = 0
@@ -52,12 +74,7 @@
     render 'progress-bar', class: 'absolute top-0', value: progress, max: total
   %}
 
-  <style>
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-      animation-duration: 1s;
-    }
-  </style>
+
   <quiz-step
     {% if is_final_step %}
     data-final="true"
@@ -65,7 +82,7 @@
     data-step="{{ progress }}"
     data-quiz="{{ parent_quiz.system.id  }}"
     data-stepurl="{{ metaobject.system.url  }}"
-    class="container mx-auto px-4 flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-10">
+    class="relative container mx-auto px-4 flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-10">
     {% if is_final_step %}
       {% render "product-finder-result-layout"
         , parent_quiz: parent_quiz %}
